@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('abouts', function (Blueprint $table) {
-            $table->dropColumn('currency');
+        Schema::table('stocks', function (Blueprint $table) {
+            $table->foreignId('purchasing_id')->after('product_id')->nullable()->constrained();
         });
     }
 
@@ -21,10 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('abouts', function (Blueprint $table) {
-            $table->after('shop_location', function ($table) {
-                $table->string('currency')->default('IDR');
-            });
+        Schema::table('stocks', function (Blueprint $table) {
+            $table->dropForeign(['purchasing_id']);
+            $table->dropColumn('purchasing_id');
         });
     }
 };

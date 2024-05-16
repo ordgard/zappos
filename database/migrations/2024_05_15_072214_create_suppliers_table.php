@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('tenant_users', function (Blueprint $table) {
-            $table->string('full_name')->nullable()->change();
+        Schema::create('suppliers', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('phone_number')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('tenant_users', function (Blueprint $table) {
-            $table->string('full_name')->change();
-        });
+        Schema::dropIfExists('suppliers');
     }
 };

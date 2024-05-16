@@ -10,6 +10,7 @@ use App\Filament\Tenant\Resources\CategoryResource;
 use App\Filament\Tenant\Resources\MemberResource;
 use App\Filament\Tenant\Resources\PermissionResource;
 use App\Filament\Tenant\Resources\ProductResource;
+use App\Filament\Tenant\Resources\PurchasingResource;
 use App\Filament\Tenant\Resources\RoleResource;
 use App\Filament\Tenant\Resources\SellingResource;
 use App\Filament\Tenant\Resources\UserResource;
@@ -65,6 +66,7 @@ class TenantPanelProvider extends PanelProvider
                         ...($user?->can('read member') ? MemberResource::getNavigationItems() : []),
                         ...($user?->can('read category') ? CategoryResource::getNavigationItems() : []),
                         ...($user?->can('read product') ? ProductResource::getNavigationItems() : []),
+                        ...($user?->can('read purchasing') ? PurchasingResource::getNavigationItems() : []),
                         // NavigationItem::make('setting')
                         //     ->label(__('Setting'))
                         //     ->icon(Settings::getNavigationIcon())

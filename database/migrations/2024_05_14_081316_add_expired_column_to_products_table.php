@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Artisan::call('tenants:run app:move-about-to-tenant');
-        if (config('tenancy.central_domains')[0] != null) {
-            Schema::dropIfExists('abouts');
-        }
+        Schema::table('products', function (Blueprint $table) {
+            $table->dateTime('expired')->nullable()->after('hero_images');
+        });
     }
 
     /**
@@ -22,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('expired');
+        });
     }
 };

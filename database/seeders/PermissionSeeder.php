@@ -163,6 +163,12 @@ class PermissionSeeder extends Seeder
                         ],
                         'guard' => ['sanctum'],
                     ],
+                    'purchasing' => [
+                        'permission' => [
+                            'c', 'r', 'u', 'd',
+                        ],
+                        'guard' => ['web', 'sanctum'],
+                    ],
                 ],
             ],
         ];
